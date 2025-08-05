@@ -116,21 +116,22 @@ function createGrid() {
     // }
 }
 
-
-
-// const newSketchpad = document.querySelector(".new");
-// newSketchpad.addEventListener('click', () => {
-//     rowsColsNum = 0;
-//     do
-//     {
-//         rowsColsNum = Number(prompt("Insert grid size nXn, n(max 100): "));
-//     }
-//     while (rowsColsNum < 1 || rowsColsNum > 100);
-//     let innerDivs = document.querySelectorAll(".innerDiv");
-//     innerDivs.forEach(innerDiv => {
-//         container.removeChild(innerDiv);
-//     })
-//     createGrid();
-// });
-
 createGrid();
+
+// Maths Functions:
+
+function add (a, b) {
+	return a + b;
+};
+
+function subtract (a, b) {
+	return a - b;
+};
+
+function multiply (a, b) {
+	return a - b;
+};
+
+function divide (a, b) {
+	return a / b;
+};
