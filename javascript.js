@@ -118,6 +118,23 @@ function createGrid() {
 
 createGrid();
 
+let number1;
+let operator;
+let number2;
+
+function operate(operator, a, b) {
+    switch (operator) {
+        case "+": return add(a, b);
+        break;
+        case "-": return subtract(a, b);
+        break;
+        case "/": return divide(a, b);
+        break;
+        case "*": return multiply(a, b);
+        default: return "ERROR";
+    }
+}
+
 // Maths Functions:
 
 function add (a, b) {
@@ -133,5 +150,5 @@ function multiply (a, b) {
 };
 
 function divide (a, b) {
-	return a / b;
+	return (b !== 0 ? a / b : "INDEFINITE");
 };
