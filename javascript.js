@@ -122,6 +122,12 @@ let number1;
 let operator;
 let number2;
 
+const clear = document.querySelector("#clear");
+    // button.style.flexBasis = "10vh";
+    clear.addEventListener('click', () => {
+        result.textContent = "0";
+    });
+
 function operate(operator, a, b) {
     switch (operator) {
         case "+": return add(a, b);
