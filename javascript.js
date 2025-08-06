@@ -3,7 +3,12 @@ let rowsNum = 4;
 const container = document.querySelector("#container");
 const result = document.querySelector("#result");
 
+let number1 = NaN;
+let operator = "";
+let number2 = NaN;
+
 function createGrid() {
+
     let i = 9;
     while (i >= 0) {
         
@@ -89,14 +94,14 @@ function createGrid() {
             });
             container.appendChild(buttonminus);
         }
+
+        i--;
     } 
 }
 
 createGrid();
 
-let number1 = NaN;
-let operator = "";
-let number2 = NaN;
+
 
 const clear = document.querySelector("#clear");
     // button.style.flexBasis = "10vh";
@@ -107,26 +112,97 @@ const clear = document.querySelector("#clear");
         number2 = NaN;
     });
 
-function numberPressed(number) {
-    if (number == ".") {
-        if 
-        return 
+function operatorPressed(operatorPressed) {
+    console.log(`a4: operatorPressed: ${operatorPressed}, operator: ${operator}`);
+    if (operatorPressed === "=") {
+        if (isNaN(number1)) {
+            return 0;
+        } else if (operator === "") {
+            return number1;
+        } else if (isNaN(number2)) {
+            number2 = number1;
+        }
+        number1 = operate(operator, number1, number2);
+        operator = "";
+        number2 = NaN;
+        return number1;
+    } else  {
+        if (operator === "") {
+            if (isNaN(number1)) {
+                console.log(`b: number1: ${number1}`);
+                number1 = "0";
+                
+            }
+            console.log(`a3: number1: ${number1}`);
+            operator = operatorPressed;
+            return `${number1}${operator}`;
+        }
+        if (operator != "") {
+            console.log(`a5: number2: ${number2}`);
+            if (isNaN(number2)) {
+                console.log(`a5: number1: ${number1}`);
+                operator = operatorPressed;
+                return `${number1}${operator}`;
+            } else {
+                console.log(`a6: number1: ${number1}`);
+                number1 = operate(operator, number1, number2);
+                operator = operatorPressed;
+                number2 = NaN;
+                return `${number1}${operator}`;
+            }
+        }
     }
 }
 
+function numberPressed(number) {
+    if (number == "." && isNaN(number1)) {
+        number1 = "0.";
+        return "0.";
+    } else if (number == "." && !isNaN(number1) && operator !== "" && isNaN(number2)) {
+        number2 = "0.";
+        return `${number1}${operator}${number2}`;
+    } else if (isNaN(number1)) {
+        console.log(`a1: number1: ${number1}`);
+        number1 = number;
+        console.log(`a2: number1: ${number1}`);
+        return number1;
+    } else if (!isNaN(number1) && operator === "" ) {
+        if (!(number == "." && decimal(number1))) {
+            if (number1 == "0") {
+                number1 = number;
+            } else {
+                number1 = `${number1}${number}`;
+            }
+        }
+        return number1;
+    } else if (!isNaN(number1) && operator !== "" ) {
+        if (isNaN(number2)) {
+            number2 = `${number}`;
+        } else if (!(number == "." && decimal(number2))) {
+            number2 = `${number2}${number}`;
+        }
+        return `${number1}${operator}${number2}`;
+    }
+    return 
+
+}
+
+function decimal(num) {
+    return String(num).split("").includes(".");
+}
 
 function buttonPressed(button) {
     switch (button) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
+        case "0":
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
         case ".":
             return numberPressed(button);
             break;
@@ -157,7 +233,7 @@ function operate(operator, a, b) {
 // Maths Functions:
 
 function add (a, b) {
-	return a + b;
+	return parseFloat(a) + parseFloat(b);
 };
 
 function subtract (a, b) {
@@ -165,9 +241,9 @@ function subtract (a, b) {
 };
 
 function multiply (a, b) {
-	return a - b;
+	return a * b;
 };
 
 function divide (a, b) {
-	return (b !== 0 ? a / b : "INDEFINITE");
+	return (b != 0 ? a / b : "INDEFINITE");
 };

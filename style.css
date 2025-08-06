@@ -42,23 +42,24 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    align-content: center;
-    margin-bottom: 20px;
+    align-items: center;
+    /* margin-bottom: 20px; */
 
     padding: 10px;
-    flex-basis: 80vh;
+    flex-basis: 80%;
+    aspect-ratio: 4 / 1;
 }
 
 /* .innerDiv {*/
 button {
     display:flex;
     /* flex-shrink: 0; */
-    /* flex-basis: 20%; */
+    flex-basis: 20%;
     /* margin : 10px;  */
     
     border-radius : 2px;
     padding : 20px;
-    height: 15vh;
+    /* height: 15vh; */
     aspect-ratio: 1 / 1;
 }  
 /* 
